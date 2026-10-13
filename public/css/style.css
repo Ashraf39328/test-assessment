@@ -1,0 +1,390 @@
+/* =========================================================
+   Design tokens — "Ledger" system
+   A school assessment platform should feel like a well-kept
+   mark register: paper, ruled lines, ink, and a red grading pen.
+   ========================================================= */
+:root {
+  --paper: #F5F2EA;
+  --paper-raised: #FFFDF8;
+  --navy: #17233E;
+  --navy-soft: #2B3B5E;
+  --ink: #232323;
+  --rule: #D9D2BE;
+  --red: #A13D2B;
+  --red-soft: #C75946;
+  --gold: #B8912E;
+  --green: #3E6B4A;
+  --radius: 3px;
+  --font-display: "Source Serif 4", "Georgia", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+a { color: var(--navy); }
+
+/* ---------- Ruled-ledger background wash on shell pages ---------- */
+body.ledger-bg {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 35px,
+    var(--rule) 35px,
+    var(--rule) 36px
+  );
+  background-attachment: local;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--navy);
+  color: var(--paper-raised);
+  padding: 14px 28px;
+  border-bottom: 3px solid var(--red);
+}
+.topbar .brand {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.topbar .brand .mark {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 1px 6px;
+  border-radius: var(--radius);
+  letter-spacing: 1px;
+}
+.topbar .who {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #C9D0DE;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.topbar button.linklike {
+  background: none;
+  border: none;
+  color: #C9D0DE;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 0;
+}
+
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+.wrap.narrow { max-width: 460px; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 6px;
+}
+h1 { font-size: 30px; }
+h2 { font-size: 21px; }
+h3 { font-size: 17px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+  display: block;
+}
+.subtle { color: #6B6455; font-size: 13.5px; }
+
+/* ---------- Card / sheet ---------- */
+.sheet {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+.sheet + .sheet { margin-top: 0; }
+
+/* ---------- Forms ---------- */
+label {
+  display: block;
+  font-size: 12.5px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--navy-soft);
+  margin: 14px 0 5px;
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="number"],
+input[type="datetime-local"], select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--ink);
+}
+textarea { resize: vertical; min-height: 70px; }
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  outline: 2px solid var(--red-soft);
+  outline-offset: 1px;
+}
+
+button, .btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--navy);
+  background: var(--navy);
+  color: #fff;
+  padding: 10px 18px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+button:hover, .btn:hover { background: var(--navy-soft); }
+button.secondary { background: transparent; color: var(--navy); }
+button.secondary:hover { background: #EFEAD9; }
+button.danger { background: transparent; border-color: var(--red); color: var(--red); }
+button.danger:hover { background: #FBEDE9; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button.small { padding: 6px 12px; font-size: 12.5px; }
+
+.form-row { display: flex; gap: 14px; }
+.form-row > div { flex: 1; }
+
+.error-box {
+  background: #FBEDE9;
+  border: 1px solid var(--red-soft);
+  color: var(--red);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 13.5px;
+  margin-top: 14px;
+}
+.success-box {
+  background: #EAF2EC;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 13.5px;
+  margin-top: 14px;
+}
+
+/* ---------- Auth shell ---------- */
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 34px 30px;
+  box-shadow: 0 8px 30px rgba(23,35,62,0.08);
+}
+.auth-card .stamp {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: var(--radius);
+  transform: rotate(-2deg);
+  margin-bottom: 14px;
+}
+.role-toggle { display: flex; gap: 8px; margin-bottom: 18px; }
+.role-toggle button {
+  flex: 1;
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--rule);
+}
+.role-toggle button.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.switch-line { text-align: center; margin-top: 16px; font-size: 13.5px; color: #6B6455; }
+.switch-line a { cursor: pointer; }
+
+/* ---------- Tables / lists ---------- */
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--navy-soft); }
+tr:last-child td { border-bottom: none; }
+
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.item-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.item-card h3 { margin-bottom: 4px; }
+.item-card .meta { font-family: var(--font-mono); font-size: 12px; color: #6B6455; margin-bottom: 12px; }
+.item-card .actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+
+/* ---------- Badges (grade stamp) ---------- */
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 2px 9px;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+}
+.badge.pending { color: var(--gold); }
+.badge.graded { color: var(--green); }
+.badge.draft { color: #8A8272; }
+.badge.published { color: var(--red); }
+
+.grade-stamp {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--red);
+  border: 3px double var(--red);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  transform: rotate(-6deg);
+}
+
+/* ---------- Question builder ---------- */
+.question-block {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-top: 14px;
+  background: #FCFAF3;
+  position: relative;
+}
+.question-block .q-number {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--red);
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  background: var(--paper-raised);
+  padding: 0 6px;
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+}
+.option-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.option-row input[type="text"] { flex: 1; }
+
+/* ---------- OMR-style bubble options for taking a test ---------- */
+.omr-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  margin-top: 8px;
+  cursor: pointer;
+  background: #fff;
+}
+.omr-option:hover { border-color: var(--navy-soft); }
+.omr-option.selected { border-color: var(--red); background: #FBEDE9; }
+.omr-bubble {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--navy-soft);
+  flex-shrink: 0;
+  position: relative;
+}
+.omr-option.selected .omr-bubble { border-color: var(--red); }
+.omr-option.selected .omr-bubble::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--red);
+}
+.omr-option input[type="radio"] { display: none; }
+
+/* ---------- Timer ---------- */
+.timer-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--navy);
+  color: #fff;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--red);
+}
+.timer-clock {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.timer-clock.low { color: var(--red-soft); animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.5; } }
+
+/* ---------- Misc ---------- */
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: #8A8272;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+}
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.progress-fill { height: 100%; background: var(--red); }
+
+@media (max-width: 640px) {
+  .wrap { padding: 20px 14px 48px; }
+  .form-row { flex-direction: column; }
+  .topbar { padding: 12px 16px; }
+}
